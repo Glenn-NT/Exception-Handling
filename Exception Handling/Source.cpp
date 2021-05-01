@@ -17,3 +17,20 @@ int main() {
 	system("Pause");
 	return 0;
 }
+
+char character(char start, int offset) {
+
+	char target;  //to hold target char
+
+	//check if start is a letter
+	if (!isalpha(start))
+		throw "invalidCharacterExcpeption\n";
+	else
+		target += offset;
+
+	//checks if the rarget char is a lower or upper case letters
+	if (islower(target) || isupper(target))
+		return target;
+	else
+		throw"invalidRangeException\n";
+}
