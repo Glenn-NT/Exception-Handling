@@ -14,7 +14,18 @@ char character(char, int);
 
 int main() {
 
-	
+	try {
+		char x = character('A', 6);
+		cout << x << endl;
+	}
+	catch (invalidCharacterExcpeption)
+	{
+		cout << "Error invalid character\n";
+	}
+	catch (invalidRangeException)
+	{
+		cout << "Error invalid range\n";
+	}
 
 	system("Pause");
 	return 0;
@@ -23,16 +34,32 @@ int main() {
 char character(char start, int offset) {
 
 	char target;//to hold target char
+	int charCase = 0;
 
 	//check if start is a letter
 	if (!isalpha(start))
 		throw invalidCharacterExcpeption();
-	else
-		target = start + offset;
 
-	//checks if the rarget char is a lower or upper case letters
-	if (islower(target) || isupper(target))
-		return target;
-	else
-		throw invalidRangeException();
+	if (islower(start))
+		charCase = 1;
+	else if (isupper(start))
+		charCase = 2;
+
+	switch (charCase)
+	{
+		//lower case
+	case 1: target = start + offset;
+		if (islower(target))
+			return target;
+		else
+			throw invalidRangeException();
+		break;
+		//upper case
+	case 2: target = start + offset;
+		if (isupper(target))
+			return target;
+		else
+			throw invalidRangeException();
+	}
+	
 }
