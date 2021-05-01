@@ -6,6 +6,9 @@
 
 using namespace std;
 
+//Throws exceptions for invalid rage and invalid argument
+char character(char, int);
+
 int main() {
 
 
